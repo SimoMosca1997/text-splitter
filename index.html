@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Divisore di Testo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center;
+        }
+        textarea {
+            width: 80%;
+            height: 150px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Incolla il tuo elenco di cifre o parole</h2>
+    <textarea id="inputText" placeholder="Incolla il tuo elenco qui..."></textarea><br>
+    <button onclick="formatText(',')">Dividi con ","</button>
+    <button onclick="formatTextSql()">Dividi con formato SQL</button>
+    <h3>Risultato:</h3>
+    <p id="outputText"></p>
+
+    <script>
+        function formatText(separator) {
+            let input = document.getElementById("inputText").value;
+            let items = input.split(/\s+/).filter(item => item.trim() !== "");
+            document.getElementById("outputText").textContent = items.join(separator);
+        }
+
+        function formatTextSql() {
+            let input = document.getElementById("inputText").value;
+            let items = input.split(/\s+/).filter(item => item.trim() !== "");
+            let formatted = "('" + items.join("','") + "')";
+            document.getElementById("outputText").textContent = formatted;
+        }
+    </script>
+</body>
+</html>
